@@ -1,7 +1,6 @@
 #include <iostream>
 #include <ctime>
 using namespace std;
-
 int rand(const int size, double* values) {
     srand(time(NULL));
     for (int i = 0; i < size; i++) {
