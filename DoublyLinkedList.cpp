@@ -17,3 +17,6 @@ List::~List()
 		count--;
 	}
 }
+int main() {
+	return 0;
+};

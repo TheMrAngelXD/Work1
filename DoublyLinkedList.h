@@ -71,7 +71,10 @@ public:
 
 	 Метод класса вывода количества элеметов двусвязного списка.
 	*/
-	const size_t getCount();
+	const size_t getCount() 
+	{
+		return count;
+	};
 	/*!
 	 \brief Метод класса добавления элемента в список.
 	 \param[in] const int data - значение,
@@ -92,7 +95,7 @@ public:
 	 введеный с клавиатуры.
 	*/
 	void deleteElement(const size_t numberElement);
-
+	
 };
 
 	
