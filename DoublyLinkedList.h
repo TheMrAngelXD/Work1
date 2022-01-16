@@ -1,6 +1,5 @@
 ﻿#pragma once
 #include <iostream>
-using namespace std;
 /*!
 	\brief Класс звена списка.
 
@@ -23,6 +22,7 @@ public:
 		this->previous = previous;
 		this->data = data;
 	}
+	~Element();
 };
 /*!
 	\brief Класс реализации списка.
@@ -39,15 +39,6 @@ class List
 	Element* head;
 	Element* tail;
 	size_t count;
-	/*!
-	 \brief Приватный метод получения элементов списка.
-
-	 Приватный метод получения элементов списка двусвязного списка.
-	 Его предназначение - дальнейшее использование в переопределении
-	 оператора сдвига <<.
-	*/
-	friend ostream& operator << (ostream& out, const List& list);
-
 public:
 	/*!
 	 \brief Конструктор по умолчанию.
@@ -55,8 +46,8 @@ public:
 	 В данном конструкторе присваиваются указателям
 	 head (начало списка) и tail (конец списка) nullptr (нулевые значения).
 	*/
-	List():head(nullptr), tail(nullptr) , count(0) {};
-	
+	List() :head(nullptr), tail(nullptr), count(0) {};
+
 	/*!
 	 \brief Деструктор.
 
@@ -71,31 +62,50 @@ public:
 
 	 Метод класса вывода количества элеметов двусвязного списка.
 	*/
-	const size_t getCount() 
-	{
-		return count;
-	};
+	const size_t getCount();
 	/*!
 	 \brief Метод класса добавления элемента в список.
 	 \param[in] const int data - значение,
 	 которое будет хранить добавленный элемент списке.
+	 \param[in] const int pos - позиция после которой произойдет вставка
 	*/
-	void addElement(const int data);
+	void addElement(const int data, const int pos);
+	/*!
+	 \brief Метод класса добавления элемента в начало списка.
+	 \param[in] const int data - значение,
+	 которое будет хранить добавленный элемент списке.
+	*/
+	void addElementHead(const int data);
+
+	/*!
+	 \brief Метод класса добавления элемента в конец списка.
+	 \param[in] const int data - значение,
+	 которое будет хранить добавленный элемент списке.
+	*/
+	void addElementTail(const int data);
 	/*!
 	 \brief Метод класса изменения значения элемента списка.
-	 \param[in] const size_t numberElement - номер элемента,который будет изменяться.
+	 \param[in] const int numberElement - номер элемента,который будет изменяться.
 	 \param[in] const int setData - значение элемента,который будет изменяться.
 
 	 Метод класса изменения значения элемента циклического односвязного списка.
 	*/
-	void changeElement(const size_t numberElement, const int setData);
+	void changeElement(const int numberElement, const int setData);
 	/*!
 	 \brief Метод класса удаления элемента списка.
 	 \param[in] const size_t numberElement - номер элемента, подверженному удалению,
 	 введеный с клавиатуры.
 	*/
-	void deleteElement(const size_t numberElement);
-	
+	void deleteElement(const int numberElement);
+	/*!
+	 \brief Метод класса получения списка элементов.
+	*/
+	std::string getElements();
+private:
+	List(const List&) = delete;
+	List& operator= (const List&) = delete;
+	List(List&&) = delete;
+	List& operator= (List&&) = delete;
 };
 
 	
